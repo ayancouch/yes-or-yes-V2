@@ -13,7 +13,7 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #ff0000c0 0%, #ff0000 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -23,7 +23,7 @@
 
         .container {
             text-align: center;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(207, 0, 254, 0.95);
             padding: 60px 40px;
             border-radius: 20px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
@@ -32,16 +32,19 @@
         }
 
         h1 {
-            color: #e74c3c;
+            color: #ffffff;
             font-size: 3em;
             margin-bottom: 20px;
-            animation: bounce 1s infinite;
+            animation: heartbeat 1s infinite;
         }
 
         .heart-icon {
-            font-size: 4em;
             margin: 20px 0;
             animation: heartbeat 1.2s infinite;
+            max-width: 300px;
+            height: auto;
+            border-radius: 15px;
+            display: block;
         }
 
         p {
@@ -51,46 +54,46 @@
             line-height: 1.6;
         }
 
-        .buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
+        function sayYes() {
+            // Clear the whole page
+            document.body.innerHTML = '';
 
-        button {
-            padding: 15px 40px;
-            font-size: 1.1em;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+            // Create full-screen container for the final message
+            const finalWrap = document.createElement('div');
+            finalWrap.style.position = 'fixed';
+            finalWrap.style.inset = '0';
+            finalWrap.style.display = 'flex';
+            finalWrap.style.alignItems = 'center';
+            finalWrap.style.justifyContent = 'center';
+            finalWrap.style.background = 'white';
+            finalWrap.style.zIndex = '9999';
 
-        .yes-btn {
-            background: #e74c3c;
-            color: white;
-            flex-grow: 1;
-        }
+            const finalMsg = document.createElement('div');
+            finalMsg.textContent = "hehe thats what i thought. see you on feb 14th cutie ;)";
+            finalMsg.style.color = '#e74c3c';
+            finalMsg.style.fontSize = 'clamp(20px, 4vw, 36px)';
+            finalMsg.style.textAlign = 'center';
+            finalMsg.style.padding = '20px';
+            finalMsg.style.borderRadius = '12px';
+            finalMsg.style.boxShadow = '0 10px 30px rgba(0,0,0,0.15)';
+            finalMsg.style.opacity = '0';
+            finalMsg.style.transform = 'translateY(20px) scale(0.98)';
+            finalMsg.style.transition = 'opacity 500ms ease, transform 500ms ease';
 
-        .yes-btn:hover {
-            background: #c0392b;
-            transform: scale(1.05);
-            box-shadow: 0 10px 30px rgba(231, 76, 60, 0.4);
-        }
+            finalWrap.appendChild(finalMsg);
+            document.body.appendChild(finalWrap);
 
-        .no-btn {
-            background: #95a5a6;
-            color: white;
-            flex-grow: 1;
-        }
+            // Trigger pop-in animation
+            requestAnimationFrame(() => {
+                setTimeout(() => {
+                    finalMsg.style.opacity = '1';
+                    finalMsg.style.transform = 'translateY(0) scale(1)';
+                }, 50);
+            });
 
-        .no-btn:hover {
-            transform: translate(-10px, -10px);
-            background: #7f8c8d;
+            // Add confetti after showing message
+            setTimeout(() => { createConfetti(); }, 200);
+        }
         }
 
         .message {
@@ -143,13 +146,13 @@
 </head>
 <body>
     <div class="container">
-        <div class="heart-icon">❤️</div>
+        <img src="IMG_2038.heic" alt="Valentine's Day" class="heart-icon">
         <h1>Will You Be My Valentine?</h1>
-        <p>you HAVE to be my valentine!!!!!! or else...</p>
+        <p>you need to say yes.</p>
         
         <div class="buttons">
-            <button class="yes-btn" onclick="sayYes()">YES! 💕</button>
-            <button class="no-btn" onclick="sayNo()">Not Sure</button>
+            <button class="yes-btn" onclick="sayYes()">YES ofc fosho!</button>
+            <button class="no-btn" onclick="sayNo()">Not Sure(missing out)</button>
         </div>
         
         <div class="message" id="message"></div>
