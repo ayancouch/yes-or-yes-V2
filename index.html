@@ -54,48 +54,6 @@
             line-height: 1.6;
         }
 
-        function sayYes() {
-            // Clear the whole page
-            document.body.innerHTML = '';
-
-            // Create full-screen container for the final message
-            const finalWrap = document.createElement('div');
-            finalWrap.style.position = 'fixed';
-            finalWrap.style.inset = '0';
-            finalWrap.style.display = 'flex';
-            finalWrap.style.alignItems = 'center';
-            finalWrap.style.justifyContent = 'center';
-            finalWrap.style.background = 'white';
-            finalWrap.style.zIndex = '9999';
-
-            const finalMsg = document.createElement('div');
-            finalMsg.textContent = "hehe thats what i thought. see you on feb 14th cutie ;)";
-            finalMsg.style.color = '#e74c3c';
-            finalMsg.style.fontSize = 'clamp(20px, 4vw, 36px)';
-            finalMsg.style.textAlign = 'center';
-            finalMsg.style.padding = '20px';
-            finalMsg.style.borderRadius = '12px';
-            finalMsg.style.boxShadow = '0 10px 30px rgba(0,0,0,0.15)';
-            finalMsg.style.opacity = '0';
-            finalMsg.style.transform = 'translateY(20px) scale(0.98)';
-            finalMsg.style.transition = 'opacity 500ms ease, transform 500ms ease';
-
-            finalWrap.appendChild(finalMsg);
-            document.body.appendChild(finalWrap);
-
-            // Trigger pop-in animation
-            requestAnimationFrame(() => {
-                setTimeout(() => {
-                    finalMsg.style.opacity = '1';
-                    finalMsg.style.transform = 'translateY(0) scale(1)';
-                }, 50);
-            });
-
-            // Add confetti after showing message
-            setTimeout(() => { createConfetti(); }, 200);
-        }
-        }
-
         .message {
             margin-top: 40px;
             font-size: 1.2em;
@@ -160,17 +118,44 @@
 
     <script>
         function sayYes() {
-            const messageDiv = document.getElementById('message');
-            messageDiv.textContent = "hehe thats what i thought. see you on feb 14th cutie ;)";
-            messageDiv.style.color = '#e74c3c';
-            
-            // Create confetti
-            createConfetti();
-            
-            // Change button styles
-            document.querySelector('.yes-btn').style.background = '#27ae60';
-            document.querySelector('.yes-btn').textContent = 'YES! I\'M SO EXCITED! 🚀';
-            document.querySelector('.no-btn').style.display = 'none';
+            // Clear the whole page
+            document.body.innerHTML = '';
+
+            // Create full-screen container for the final message
+            const finalWrap = document.createElement('div');
+            finalWrap.style.position = 'fixed';
+            finalWrap.style.inset = '0';
+            finalWrap.style.display = 'flex';
+            finalWrap.style.alignItems = 'center';
+            finalWrap.style.justifyContent = 'center';
+            finalWrap.style.background = 'white';
+            finalWrap.style.zIndex = '9999';
+
+            const finalMsg = document.createElement('div');
+            finalMsg.textContent = "hehe thats what i thought. see you on feb 14th cutie ;)";
+            finalMsg.style.color = '#e74c3c';
+            finalMsg.style.fontSize = 'clamp(20px, 4vw, 36px)';
+            finalMsg.style.textAlign = 'center';
+            finalMsg.style.padding = '20px';
+            finalMsg.style.borderRadius = '12px';
+            finalMsg.style.boxShadow = '0 10px 30px rgba(0,0,0,0.15)';
+            finalMsg.style.opacity = '0';
+            finalMsg.style.transform = 'translateY(20px) scale(0.98)';
+            finalMsg.style.transition = 'opacity 500ms ease, transform 500ms ease';
+
+            finalWrap.appendChild(finalMsg);
+            document.body.appendChild(finalWrap);
+
+            // Trigger pop-in animation
+            requestAnimationFrame(() => {
+                setTimeout(() => {
+                    finalMsg.style.opacity = '1';
+                    finalMsg.style.transform = 'translateY(0) scale(1)';
+                }, 50);
+            });
+
+            // Add confetti after showing message
+            setTimeout(() => { createConfetti(); }, 200);
         }
 
         function sayNo() {
