@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine pls pls?</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 60px 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            z-index: 10;
+        }
+
+        h1 {
+            color: #e74c3c;
+            font-size: 3em;
+            margin-bottom: 20px;
+            animation: bounce 1s infinite;
+        }
+
+        .heart-icon {
+            font-size: 4em;
+            margin: 20px 0;
+            animation: heartbeat 1.2s infinite;
+        }
+
+        p {
+            color: #333;
+            font-size: 1.3em;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 15px 40px;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .yes-btn {
+            background: #e74c3c;
+            color: white;
+            flex-grow: 1;
+        }
+
+        .yes-btn:hover {
+            background: #c0392b;
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(231, 76, 60, 0.4);
+        }
+
+        .no-btn {
+            background: #95a5a6;
+            color: white;
+            flex-grow: 1;
+        }
+
+        .no-btn:hover {
+            transform: translate(-10px, -10px);
+            background: #7f8c8d;
+        }
+
+        .message {
+            margin-top: 40px;
+            font-size: 1.2em;
+            color: #e74c3c;
+            min-height: 40px;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            25% {
+                transform: scale(1.1);
+            }
+            50% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .confetti {
+            position: fixed;
+            pointer-events: none;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="heart-icon">❤️</div>
+        <h1>Will You Be My Valentine?</h1>
+        <p>you HAVE to be my valentine!!!!!! or else...</p>
+        
+        <div class="buttons">
+            <button class="yes-btn" onclick="sayYes()">YES! 💕</button>
+            <button class="no-btn" onclick="sayNo()">Not Sure</button>
+        </div>
+        
+        <div class="message" id="message"></div>
+    </div>
+
+    <script>
+        function sayYes() {
+            const messageDiv = document.getElementById('message');
+            messageDiv.textContent = "hehe thats what i thought. see you on feb 14th cutie ;)";
+            messageDiv.style.color = '#e74c3c';
+            
+            // Create confetti
+            createConfetti();
+            
+            // Change button styles
+            document.querySelector('.yes-btn').style.background = '#27ae60';
+            document.querySelector('.yes-btn').textContent = 'YES! I\'M SO EXCITED! 🚀';
+            document.querySelector('.no-btn').style.display = 'none';
+        }
+
+        function sayNo() {
+            const noBtn = document.querySelector('.no-btn');
+            const yesBtn = document.querySelector('.yes-btn');
+            
+            // Move the no button away
+            const randomX = (Math.random() - 0.5) * 200;
+            const randomY = (Math.random() - 0.5) * 200;
+            
+            noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
+            noBtn.textContent = 'Try again! 😊';
+            
+            // Make yes button bigger
+            yesBtn.style.transform = 'scale(1.2)';
+        }
+
+        function createConfetti() {
+            const colors = ['❤️', '💕', '💖', '💗', '💝', '✨', '🎉'];
+            
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.textContent = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.left = Math.random() * window.innerWidth + 'px';
+                    confetti.style.top = '-20px';
+                    confetti.style.fontSize = (Math.random() * 20 + 20) + 'px';
+                    confetti.style.opacity = '1';
+                    
+                    document.body.appendChild(confetti);
+                    
+                    let top = 0;
+                    const speed = Math.random() * 3 + 2;
+                    const xMove = (Math.random() - 0.5) * 200;
+                    
+                    const fall = setInterval(() => {
+                        top += speed;
+                        const xOffset = Math.sin(top / 30) * xMove / 30;
+                        confetti.style.transform = `translate(${xOffset}px, ${top}px)`;
+                        confetti.style.opacity = 1 - (top / window.innerHeight);
+                        
+                        if (top > window.innerHeight) {
+                            clearInterval(fall);
+                            confetti.remove();
+                        }
+                    }, 20);
+                }, i * 30);
+            }
+        }
+    </script>
+</body>
+</html>
